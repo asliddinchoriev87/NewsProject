@@ -1,3 +1,5 @@
-streamlit
 scikit-learn
-transformers
+streamlit==1.25.0  # Adjust based on your streamlit version
+torch==2.0.0+cpu -f https://download.pytorch.org/whl/torch_stable.html
+torchvision==0.15.0+cpu -f https://download.pytorch.org/whl/torch_stable.html
+transformers==4.32.0  # Include any other package dependencies you need
