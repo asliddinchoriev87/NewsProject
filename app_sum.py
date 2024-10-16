@@ -10,6 +10,8 @@ with open('nmf_model.pkl', 'rb') as model_file:
 with open('tfidf_vectorizer.pkl', 'rb') as vectorizer_file:
     vectorizer = pickle.load(vectorizer_file)
 
+model_name = "sshleifer/bart-tiny-random"
+
 # Make sure the SummarizationModel class is defined or imported
 class SummarizationModel:
     def __init__(self, model_name='sshleifer/bart-tiny-random'):
@@ -22,6 +24,19 @@ with open('summarization_model.pkl', 'rb') as sum_file:
 
 # Assuming you have a list or mapping of topics to categories
 topics_to_categories = {0: "Sports", 1: "Politics", 2: "Business", 3: "Entertainment", 4: "Technology"}
+
+
+tokenizer = BartTokenizer.from_pretrained(model_name)
+model = BartForConditionalGeneration.from_pretrained(model_name)
+
+# Tokenize the input text
+input_ids = tokenizer.encode(text, return_tensors="pt")
+
+# Generate summary
+summary_ids = model.generate(input_ids, max_length=50, min_length=20, do_sample=False)
+
+# Decode and print the summary
+summary = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
 
 # Streamlit app
 st.title("News Text Summarization & Categorization")
