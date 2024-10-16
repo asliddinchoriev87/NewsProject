@@ -9,6 +9,11 @@ with open('nmf_model.pkl', 'rb') as model_file:
 with open('tfidf_vectorizer.pkl', 'rb') as vectorizer_file:
     vectorizer = pickle.load(vectorizer_file)
 
+@st.cache(allow_output_mutation=True)
+def load_model():
+    return pipeline("summarization", model="sshleifer/bart-tiny-random")
+
+summarizer = load_model()
 # Load the summarization model
 with open('summarization_model.pkl', 'rb') as sum_file:
     summarization_model = pickle.load(sum_file)
