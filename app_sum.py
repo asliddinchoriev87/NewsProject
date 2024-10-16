@@ -1,5 +1,6 @@
 import streamlit as st
 import pickle
+from transformers import pipeline
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 # Load your pre-trained NMF model and vectorizer
