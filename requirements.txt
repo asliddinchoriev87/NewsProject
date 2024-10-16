@@ -2,4 +2,5 @@ scikit-learn
 streamlit
 torch
 torchvision
-transformers
+transformers>=4.32.0
+
