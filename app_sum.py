@@ -41,13 +41,13 @@ if st.button("Analyze Text"):
         predicted_topic = topic_distribution.argmax()
         predicted_category = topics_to_categories.get(predicted_topic, "Unknown")
 
-        # Step 4: Summarize the article
-        summary = summarization_model.summarizer(text, max_length=50, min_length=25, do_sample=False)
-        
-        # Display the predicted category
+         # Display the predicted category
         st.subheader("Predicted Category:")
         st.write(predicted_category)
 
+        # Step 4: Summarize the article
+        summary = summarization_model.summarizer(text, max_length=50, min_length=25, do_sample=False)
+    
         # Display the summary
         st.subheader("Summary:")
         st.write(summary[0]['summary_text'])
