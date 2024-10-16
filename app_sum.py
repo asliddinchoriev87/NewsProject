@@ -51,9 +51,6 @@ if st.button("Analyze Text"):
         st.write(predicted_category)
 
         # Step 4: Summarize the article
-        if len(text) > 512:
-        text = text[:512]  # truncate the text to fit within a reasonable token limit
-
         summary = summarization_model.summarizer(text, max_length=50, min_length=25, do_sample=False)
     
         # Display the summary
