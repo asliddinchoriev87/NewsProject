@@ -1,5 +1,5 @@
 scikit-learn
-streamlit==1.25.0  
-torch==2.0.0+cpu 
-torchvision==0.15.0+cpu 
-transformers==4.32.0 
+streamlit
+torch
+torchvision
+transformers
