@@ -27,17 +27,6 @@ with open('summarization_model.pkl', 'rb') as sum_file:
 topics_to_categories = {0: "Sports", 1: "Politics", 2: "Business", 3: "Entertainment", 4: "Technology"}
 
 
-tokenizer = BartTokenizer.from_pretrained(model_name)
-model = BartForConditionalGeneration.from_pretrained(model_name)
-
-# Tokenize the input text
-input_ids = tokenizer.encode(text, return_tensors="pt")
-
-# Generate summary
-summary_ids = model.generate(input_ids, max_length=50, min_length=20, do_sample=False)
-
-# Decode and print the summary
-summary = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
 
 # Streamlit app
 st.title("News Text Summarization & Categorization")
@@ -62,6 +51,18 @@ if st.button("Analyze Text"):
         st.write(predicted_category)
 
         # Step 4: Summarize the article
+        tokenizer = BartTokenizer.from_pretrained(model_name)
+        model = BartForConditionalGeneration.from_pretrained(model_name)
+
+        # Tokenize the input text
+        input_ids = tokenizer.encode(text, return_tensors="pt")
+
+        # Generate summary
+        summary_ids = model.generate(input_ids, max_length=50, min_length=20, do_sample=False)
+
+        # Decode and print the summary
+        summary = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
+        
         summary = summarization_model.summarizer(text, max_length=50, min_length=25, do_sample=False)
     
         # Display the summary
