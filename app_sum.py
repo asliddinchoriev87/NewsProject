@@ -2,6 +2,7 @@ import streamlit as st
 import pickle
 from transformers import pipeline
 from sklearn.feature_extraction.text import TfidfVectorizer
+from transformers import BartForConditionalGeneration, BartTokenizer
 
 # Load your pre-trained NMF model and vectorizer
 with open('nmf_model.pkl', 'rb') as model_file:
