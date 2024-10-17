@@ -85,11 +85,11 @@ if st.button("Analyze Text"):
 
         # Determine the category with the higher score
         if south_korea_score > oversea_score:
-            return "South Korea"
+        return "South Korea"
         elif oversea_score > south_korea_score:
-            return "Oversea"
+        return "Oversea"
         else:
-            return "Unclassified"
+        return "Unclassified"
 
          # Display the predicted category
         st.subheader("Predicted Category:")
