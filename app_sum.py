@@ -16,9 +16,8 @@ model_name = "sshleifer/bart-tiny-random"
 
 # Make sure the SummarizationModel class is defined or imported
 class SummarizationModel:
-    def __init__(self, model_name='sshleifer/bart-tiny-random'):
+    def __init__(self, model_name):
         self.model_name = model_name
-        # Define any other attributes or methods
 
 # Now load the pickled model
 with open('summarization_model.pkl', 'rb') as sum_file:
@@ -57,7 +56,6 @@ if st.button("Analyze Text"):
         # Display the summary
         st.subheader("Summary:")
         st.write(summary[0]['summary_text'])
-
 
         # Extract top 5 keywords using KeyBERT
         kw_model = KeyBERT()
