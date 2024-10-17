@@ -67,7 +67,7 @@ if st.button("Analyze Text"):
         predicted_topic = topic_distribution.argmax()
         predicted_category = topics_to_categories.get(predicted_topic, "Unknown")
 
-         # Initialize scores for each category
+        # Initialize scores for each category
         oversea_score = 0
         south_korea_score = 0
 
@@ -84,12 +84,12 @@ if st.button("Analyze Text"):
                 south_korea_score += 1
 
         # Determine the category with the higher score
-            if south_korea_score > oversea_score:
-                return "South Korea"
-            elif oversea_score > south_korea_score:
-                return "Oversea"
-            else:
-                return "Unclassified"
+        if south_korea_score > oversea_score:
+            return "South Korea"
+        elif oversea_score > south_korea_score:
+            return "Oversea"
+        else:
+            return "Unclassified"
 
          # Display the predicted category
         st.subheader("Predicted Category:")
