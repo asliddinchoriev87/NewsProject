@@ -94,12 +94,9 @@ if st.button("Analyze Text"):
         predicted_category = topics_to_categories.get(predicted_topic, "Unknown")
 
          # Display the predicted category
-        st.subheader("Predicted Category:")
-        st.write(predicted_category)
+        st.subheader("Predicted Category and Country Classification:")
+        st.write(f"The news is predicted as **{predicted_category}** and classified as **{category}**.")
 
-         # Classify the text based on keywords
-        category = classify_text(text)
-        st.write(f"The text is classified as a country: **{category}**")
 
         # Step 4: Summarize the article
         # Load the summarization pipeline
