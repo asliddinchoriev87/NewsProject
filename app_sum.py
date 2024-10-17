@@ -76,11 +76,11 @@ if st.button("Analyze Text"):
 
         # Check for keyword matches
         for keyword in oversea_keywords:
-        if keyword.lower() in text:
+            if keyword.lower() in text:
             oversea_score += 1
 
         for keyword in south_korea_keywords:
-        if keyword.lower() in text:
+            if keyword.lower() in text:
             south_korea_score += 1
 
         # Determine the category with the higher score
