@@ -36,11 +36,7 @@ south_korea_keywords = [
     'Moon Jae-in', 'Yoon Suk-yeol', 'Korean history', 'Korean government', 'Korean economy', 
     'Pyeongchang', 'Korean traditional music'
 ]
-
-# Function to classify the text based on keyword matches
-def classify_text(text):
    
-
 # Make sure the SummarizationModel class is defined or imported
 class SummarizationModel:
     def __init__(self, model_name):
