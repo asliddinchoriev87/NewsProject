@@ -39,29 +39,7 @@ south_korea_keywords = [
 
 # Function to classify the text based on keyword matches
 def classify_text(text):
-    # Initialize scores for each category
-    oversea_score = 0
-    south_korea_score = 0
-
-    # Convert the text to lowercase for case-insensitive matching
-    text = text.lower()
-
-    # Check for keyword matches
-    for keyword in oversea_keywords:
-        if keyword.lower() in text:
-            oversea_score += 1
-
-    for keyword in south_korea_keywords:
-        if keyword.lower() in text:
-            south_korea_score += 1
-
-    # Determine the category with the higher score
-    if south_korea_score > oversea_score:
-        return "South Korea"
-    elif oversea_score > south_korea_score:
-        return "Oversea"
-    else:
-        return "Unclassified"
+   
 
 # Make sure the SummarizationModel class is defined or imported
 class SummarizationModel:
@@ -93,6 +71,30 @@ if st.button("Analyze Text"):
         predicted_topic = topic_distribution.argmax()
         predicted_category = topics_to_categories.get(predicted_topic, "Unknown")
 
+         # Initialize scores for each category
+        oversea_score = 0
+        south_korea_score = 0
+
+        # Convert the text to lowercase for case-insensitive matching
+        text = text.lower()
+
+        # Check for keyword matches
+        for keyword in oversea_keywords:
+        if keyword.lower() in text:
+            oversea_score += 1
+
+        for keyword in south_korea_keywords:
+        if keyword.lower() in text:
+            south_korea_score += 1
+
+        # Determine the category with the higher score
+        if south_korea_score > oversea_score:
+            return "South Korea"
+        elif oversea_score > south_korea_score:
+            return "Oversea"
+        else:
+            return "Unclassified"
+        
          # Display the predicted category
         st.subheader("Predicted Category:")
         st.write(predicted_category)
