@@ -3,6 +3,7 @@ import pickle
 from transformers import pipeline
 from sklearn.feature_extraction.text import TfidfVectorizer
 from transformers import BartForConditionalGeneration, BartTokenizer
+from keybert import KeyBERT
 
 # Load your pre-trained NMF model and vectorizer
 with open('nmf_model.pkl', 'rb') as model_file:
@@ -51,15 +52,27 @@ if st.button("Analyze Text"):
         # Step 4: Summarize the article
         # Load the summarization pipeline
         summarization_model = pipeline("summarization")
-        summary = summarization_model(text, max_length=50, min_length=25, temperature=0.7, top_p=0.9)
+        summary = summarization_model(text, max_length=60, min_length=40, temperature=0.7, top_p=0.9)
+        
         # Display the summary
         st.subheader("Summary:")
         st.write(summary[0]['summary_text'])
 
+
+        # Extract top 5 keywords using KeyBERT
+        kw_model = KeyBERT()
+        keywords = kw_model.extract_keywords(text, keyphrase_ngram_range=(1, 2), top_n=5)
+    
         # Display top 5 keywords
         st.subheader("Top 5 Keywords:")
-        keywords = summarization_model.extract_top_keywords(text)
         for keyword, score in keywords:
             st.write(f"{keyword} => Score: {score:.4f}")
-        else:
+        else
             st.write("Please enter some text to analyze.")
+
+        
+        # keywords = summarization_model.extract_top_keywords(text)
+        # for keyword, score in keywords:
+        #     st.write(f"{keyword} => Score: {score:.4f}")
+        # else:
+        #     st.write("Please enter some text to analyze.")
