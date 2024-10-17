@@ -14,6 +14,55 @@ with open('tfidf_vectorizer.pkl', 'rb') as vectorizer_file:
 
 model_name = "sshleifer/bart-tiny-random"
 
+# Define 50 keywords for each category
+oversea_keywords = [
+    'international', 'foreign', 'global', 'overseas', 'worldwide', 'USA', 'Europe', 'China', 
+    'Japan', 'Germany', 'Australia', 'Russia', 'France', 'UK', 'Canada', 'Brazil', 'India', 
+    'Africa', 'Middle East', 'Latin America', 'North America', 'United States', 'Western', 
+    'Eastern', 'Asia', 'Pacific', 'UN', 'United Nations', 'World Trade', 'World Bank', 
+    'OECD', 'NATO', 'G7', 'G20', 'IMF', 'World Health Organization', 'climate change', 
+    'global market', 'international relations', 'diplomacy', 'foreign policy', 'immigration', 
+    'export', 'import', 'foreign trade', 'currency exchange', 'global economy', 
+    'international travel', 'tourism', 'visa', 'embassy', 'global politics'
+]
+
+south_korea_keywords = [
+    'Seoul', 'South Korea', 'K-pop', 'Hangeul', 'Busan', 'Incheon', 'Gyeonggi', 'Daegu', 
+    'Gwangju', 'Daejeon', 'Jeju', 'Hallyu', 'Samsung', 'LG', 'Hyundai', 'SK Telecom', 'Korean War', 
+    'North Korea', 'DMZ', 'Gangnam', 'K-drama', 'Korean cuisine', 'kimchi', 'bibimbap', 
+    'bulgogi', 'hanbok', 'Korea University', 'Yonsei', 'KAIST', 'POSTECH', 'Korean language', 
+    'K-beauty', 'K-culture', 'K-fashion', 'Sejong', 'Jinro', 'Soju', 'Taekwondo', 
+    'Korean peninsula', 'Han River', 'Gyeongbokgung', 'Dongdaemun', 'Namdaemun', 'Korean politics', 
+    'Moon Jae-in', 'Yoon Suk-yeol', 'Korean history', 'Korean government', 'Korean economy', 
+    'Pyeongchang', 'Korean traditional music'
+]
+
+# Function to classify the text based on keyword matches
+def classify_text(text):
+    # Initialize scores for each category
+    oversea_score = 0
+    south_korea_score = 0
+
+    # Convert the text to lowercase for case-insensitive matching
+    text = text.lower()
+
+    # Check for keyword matches
+    for keyword in oversea_keywords:
+        if keyword.lower() in text:
+            oversea_score += 1
+
+    for keyword in south_korea_keywords:
+        if keyword.lower() in text:
+            south_korea_score += 1
+
+    # Determine the category with the higher score
+    if south_korea_score > oversea_score:
+        return "South Korea"
+    elif oversea_score > south_korea_score:
+        return "Oversea"
+    else:
+        return "Unclassified"
+
 # Make sure the SummarizationModel class is defined or imported
 class SummarizationModel:
     def __init__(self, model_name):
@@ -47,6 +96,7 @@ if st.button("Analyze Text"):
          # Display the predicted category
         st.subheader("Predicted Category:")
         st.write(predicted_category)
+        st.write(f"The text is classified as country : **{category}**")
 
         # Step 4: Summarize the article
         # Load the summarization pipeline
