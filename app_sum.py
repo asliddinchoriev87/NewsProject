@@ -26,8 +26,6 @@ with open('summarization_model.pkl', 'rb') as sum_file:
 # Assuming you have a list or mapping of topics to categories
 topics_to_categories = {0: "Sports", 1: "Politics", 2: "Business", 3: "Entertainment", 4: "Technology"}
 
-
-
 # Streamlit app
 st.title("News Text Summarization & Categorization")
 
@@ -51,6 +49,8 @@ if st.button("Analyze Text"):
         st.write(predicted_category)
 
         # Step 4: Summarize the article
+        # Load the summarization pipeline
+        summarization_model = pipeline("summarization")
         summary = summarization_model(text, max_length=50, min_length=25, temperature=0.7, top_p=0.9)
         # Display the summary
         st.subheader("Summary:")
