@@ -57,9 +57,23 @@ if st.button("Analyze Text"):
         st.write(summary[0]['summary_text'])
 
         # Display top 5 keywords
-        st.subheader("Top 5 Keywords:")
-        keywords = summarization_model.extract_top_keywords(text)
+        from keybert import KeyBERT
+
+         st.subheader("Top 5 Keywords:")
+        # Initialize KeyBERT model
+        kw_model = KeyBERT()
+
+        # Extract keywords
+        keywords = kw_model.extract_keywords(text, keyphrase_ngram_range=(1, 2), stop_words='english', top_n=5)
+
+        # Print keywords and scores
         for keyword, score in keywords:
-            st.write(f"{keyword} => Score: {score:.4f}")
-    else:
-        st.write("Please enter some text to analyze.")
+            print(f"{keyword}: {score:.4f}")
+
+        
+    #     st.subheader("Top 5 Keywords:")
+    #     keywords = summarization_model.extract_top_keywords(text)
+    #     for keyword, score in keywords:
+    #         st.write(f"{keyword} => Score: {score:.4f}")
+    # else:
+    #     st.write("Please enter some text to analyze.")
