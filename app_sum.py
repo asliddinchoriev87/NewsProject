@@ -98,7 +98,7 @@ if st.button("Analyze Text"):
         st.write(predicted_category)
 
          # Classify the text based on keywords
-         category = classify_text(input_text)
+        category = classify_text(text)
         st.write(f"The text is classified as a country: **{category}**")
 
         # Step 4: Summarize the article
