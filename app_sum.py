@@ -51,7 +51,7 @@ if st.button("Analyze Text"):
         st.write(predicted_category)
 
         # Step 4: Summarize the article
-        summary = summarization_model(text, max_length=50, min_length=25, do_sample=False, temperature=0.7, top_p=0.9)
+        summary = summarization_model(text, max_length=50, min_length=25, temperature=0.7, top_p=0.9)
         # Display the summary
         st.subheader("Summary:")
         st.write(summary[0]['summary_text'])
