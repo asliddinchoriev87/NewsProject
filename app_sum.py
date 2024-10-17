@@ -93,6 +93,9 @@ if st.button("Analyze Text"):
         predicted_topic = topic_distribution.argmax()
         predicted_category = topics_to_categories.get(predicted_topic, "Unknown")
 
+        # Classify the text based on keywords
+        category = classify_text(text)
+        
          # Display the predicted category
         st.subheader("Predicted Category and Country Classification:")
         st.write(f"The news is predicted as **{predicted_category}** and classified as **{category}**.")
