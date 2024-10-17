@@ -77,11 +77,11 @@ if st.button("Analyze Text"):
         # Check for keyword matches
         for keyword in oversea_keywords:
             if keyword.lower() in text:
-             oversea_score += 1
+                oversea_score += 1
 
         for keyword in south_korea_keywords:
             if keyword.lower() in text:
-             south_korea_score += 1
+                south_korea_score += 1
 
         # Determine the category with the higher score
         if south_korea_score > oversea_score:
@@ -90,7 +90,7 @@ if st.button("Analyze Text"):
             return "Oversea"
         else:
             return "Unclassified"
-        
+
          # Display the predicted category
         st.subheader("Predicted Category:")
         st.write(predicted_category)
