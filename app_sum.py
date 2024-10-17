@@ -66,7 +66,7 @@ if st.button("Analyze Text"):
         # Display top 5 keywords
         st.subheader("Top 5 Keywords:")
         for keyword, score in keywords:
-            st.write(f"{keyword} : {score:.2f * 100}")
+            st.write(f"{keyword} : {score:.2f}")
 
         
         # keywords = summarization_model.extract_top_keywords(text)
