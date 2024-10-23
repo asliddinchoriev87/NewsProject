@@ -1,6 +1,2 @@
-scikit-learn
-streamlit
-torch
-torchvision
-transformers>=4.32.0
-keybert
+fastai
+plotly
