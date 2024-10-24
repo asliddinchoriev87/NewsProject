@@ -5,6 +5,8 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from transformers import BartForConditionalGeneration, BartTokenizer
 from keybert import KeyBERT
 
+import matplotlib.pyplot as plt
+
 # Load your pre-trained NMF model and vectorizer
 with open('nmf_model.pkl', 'rb') as model_file:
     nmf_model = pickle.load(model_file)
