@@ -128,7 +128,7 @@ if st.button("Analyze Text"):
     
             # Plot the bar chart
             fig, ax = plt.subplots()
-            ax.barh(keyword_names, keyword_scores, color='skyblue')  # Horizontal bar chart
+            ax.barh(keyword_names, keyword_scores, color='inferno')  # Horizontal bar chart
             ax.set_xlabel('Score')
             ax.set_title('Top 5 Keywords')
 
