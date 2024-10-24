@@ -99,8 +99,8 @@ if st.button("Analyze Text"):
         category = classify_text(text)
         
          # Display the predicted category
-        st.subheader("Predicted Category and Country Classification:")
-        st.write(f"The news is predicted as **{predicted_category}** and classified as **{category}**.")
+        st.subheader("Category and Country:")
+        st.write(f" **{predicted_category}** || **{category}**.")
 
 
         # Step 4: Summarize the article
