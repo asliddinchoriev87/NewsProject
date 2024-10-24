@@ -114,12 +114,24 @@ if st.button("Analyze Text"):
         kw_model = KeyBERT()
         keywords = kw_model.extract_keywords(text, keyphrase_ngram_range=(1, 2), top_n=5)
     
-        # Display top 5 keywords
-        st.subheader("Top 5 Keywords:")
+        # Assuming you already extracted the keywords with their scores
+        if keywords:
+            # Separate the keywords and their scores
+            keyword_names = [keyword for keyword, score in keywords]
+            keyword_scores = [score for keyword, score in keywords]
 
-        # Join the keywords and their scores into one line
-        keywords_line = ', '.join([f"{keyword}: {score:.2f}" for keyword, score in keywords])
-        st.write(f"Keywords: {keywords_line}")
+            # Display top 5 keywords as a table (already in your code)
+            keywords_line = ', '.join([f"{keyword}: {score:.2f}" for keyword, score in keywords])
+            st.write(f"Keywords: {keywords_line}")
+    
+            # Plot the bar chart
+            fig, ax = plt.subplots()
+            ax.barh(keyword_names, keyword_scores, color='skyblue')  # Horizontal bar chart
+            ax.set_xlabel('Score')
+            ax.set_title('Top 5 Keywords')
+
+            # Display the chart in Streamlit
+            st.pyplot(fig)
 
         
         # keywords = summarization_model.extract_top_keywords(text)
